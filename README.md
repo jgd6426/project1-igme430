@@ -1,29 +1,27 @@
 # Project 1 - IGME.430
-Creating a rich web application that uses a backend web API of my design
+Creating a rich web application that uses a backend web API of my design.
 
 ### What is the intended purpose of this application?
 - Card-based task tracking system, based on Trello.
 - A recipe-tracking app that allows users to write down recipes, search for and save new recipes (using an external API), and sort their recipes based on certain categories.
 
-  OR
+Possible Sorting Categories: 
+- Want to make
+- Have made it before
+- Currently Making?
   
-- A fitness-tracking app that allows users to sort exercises into workout plans. Users can write their own exercises on new cards, or search for existing exercises.
+  --> Would enlarge the card and all the information?
+  
+  --> or figure out where to bring the user if they want to see only one recipe
+- Favorites?
 ### What data will be stored and delivered by the API?
-Recipe Idea: 
-- Recipe name, author,
+- Recipe Name & Author
 - Prep/Cook-Time (optional)
 - Ingredients & Measurements
 - Cooking steps
-- Picture? Either the user chooses their own picture (through URL?) or 
-  
-Fitness Idea:
-- Exercise name
-- Target muscle/area
-- Time/number of reps
-- Type (ex. strength, cardio, etc.)
-- Equipment (optional)
-- Difficulty (optional)
-- Instructions/other notes
+- Picture? Either the user chooses their own picture (through URL?) or choose from select options?
+- Other notes (optional)
+- Star Rating? (optional) or one star to add to favorites?
 ### What work has been completed for the prototype?
 -
 ### What work is left, and what is the plan to complete it?
