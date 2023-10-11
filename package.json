@@ -4,7 +4,9 @@
   "description": "Creating a rich web application that uses a backend web API of my design.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Tests complete\""
   },
   "author": "Judy Derrick",
   "license": "UNLICENSED",

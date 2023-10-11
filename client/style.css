@@ -1,1 +1,32 @@
-
+body {
+    background-color: rgb(106, 91, 72);
+  }
+  .categories {
+    margin-top: 40px;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+  }
+  .box {
+    background-color: whitesmoke;
+    margin: 5px;
+    width: 100%;
+  }
+  .header {
+    background-color: rgb(140, 121, 95);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  nav a {
+    margin: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+  }
+  nav a:hover {
+    text-decoration: underline;
+    text-decoration-color: white;
+  }
