@@ -29,3 +29,5 @@ Possible Sorting Categories:
 ### Is there a plan for going above and beyond? If so, what is it?
 - CSS framework --> I want it to look professional
 ### If the project uses any borrowed code or code fragments, where did they come from? What do the code fragments do? Where are they in the code?
+- Image by <a href="https://pixabay.com/users/colrizeboks-34626242/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7910753">color ize</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7910753">Pixabay</a>
+- Image by <a href="https://pixabay.com/users/simabella703-23714404/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6862935">marchane sima</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6862935">Pixabay</a>
