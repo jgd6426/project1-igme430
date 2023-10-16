@@ -1,49 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Recipe Box</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
-  
-  <script>
-
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
 </head>
+
 <body>
+  <script>
+    // code from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+  </script>
+
   <div class="header">
-    <nav>
-      <a href="#"></a>
-    </nav>
+    <h1>My Recipe Box</h1>
   </div>
   <div class="categories">
     <div id="" class="box">
-      <h3>Want to Make</h3>
+      <h1>Want to Make</h1>
+
       <section class="cards">
         <div class="recipe">
-          <h2>Name: </h2> 
-          <p id="name">Totally Real Dish</p>
+          <button type="button" class="collapsible">
+            <h2>Name: </h2>
+            <p id="name">Totally Real Dish</p>
+          </button>
 
-          <h3>Ingredients: </h3>
-          <ul id="ingredients">
-            <li>2 cups Milk</li>
-            <li>1/2 stick Butter</li>
-            <li>2 cups Flour</li>
-            <li>1 cup Sugar</li>
-          </ul>
+          <div class="content">
+            <h3>Ingredients: </h3>
+            <ul id="ingredients">
+              <li>2 cups Milk</li>
+              <li>1/2 stick Butter</li>
+              <li>2 cups Flour</li>
+              <li>1 cup Sugar</li>
+            </ul>
 
-          <h3>Directions: </h3>
-          <p id="directions">In a large bowl combine all the ingredients 
-          and bake at a temperature that feels right for a certain amount of time.</p>
+            <h3>Directions: </h3>
+            <p id="directions">In a large bowl combine all the ingredients
+              and bake at a temperature that feels right for a certain amount of time.</p>
+          </div>
         </div>
       </section>
     </div>
     <div id="" class="box">
-      <h3>Have Made</h3>
+      <h1>Have Made</h1>
     </div>
     <div id="" class="box">
-      <h3>Favorites</h3>
+      <h1>Favorites</h1>
     </div>
   </div>
   <section id="content">
   </section>
 </body>
+
 </html>
