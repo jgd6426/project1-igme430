@@ -7,39 +7,170 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
+  <script>
+    const handleResponse = async (response, parseResponse) => {
+      // grab the content section so that we can write to it
+      const content = document.querySelector('#content');
+
+      // write something based on the status of the response
+      switch (response.status) {
+        case 200: // success
+          content.innerHTML = `<b>Success</b>`;
+          break;
+        case 201: // created
+          content.innerHTML = `<b>Created</b>`;
+          break;
+        case 204: // updated
+          content.innerHTML = `<b>Updated (No Content)</b>`;
+          break;
+        case 400: // missing info
+          content.innerHTML = `<b>Bad Request</b>`;
+          break;
+        case 404:
+          content.innerHTML = `<b>Not Found</b>`;
+          break;
+        default:
+          content.innerHTML = `Error code not implemented by client.`;
+          break;
+      }
+
+      let obj = await response.json();
+      console.log(obj)
+
+      // parse the response to json
+      if (parseResponse) {
+        // stringify the data again and display it
+        let jsonString = JSON.stringify(obj);
+        content.innerHTML += `<p>${jsonString}</p>`;
+      }
+      // if we have a message, display it.
+      else if (obj.message) {
+        content.innerHTML += `<p>Message: ${obj.message}</p>`;
+      }
+    };
+
+    const sendPost = async (nameForm) => {
+      // grab all the info from the form
+      const nameAction = recipeForm.getAttribute('action');
+      const nameMethod = recipeForm.getAttribute('method');
+
+      const nameField = recipeForm.querySelector('#nameField');
+      const ingredientsField = recipeForm.querySelector('#ingredientsField');
+      const directionsField = recipeForm.querySelector('#directionsField');
+
+      // build a data string in the FORM-URLENCODED format.
+      const formData = `name=${nameField.value}&ingredients=${ingredientsField.value}&directions=${directionsField.value}`;
+
+      let response = await fetch(nameAction, {
+        method: nameMethod,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json',
+        },
+        body: formData,
+      });
+
+      handleResponse(response);
+    };
+
+
+    // function to send request
+    const requestUpdate = async (userForm) => {
+      // grab  the url and method from the html form below
+      const url = userForm.querySelector('#urlField').value;
+      const method = userForm.querySelector('#methodSelect').value;
+
+      // await our fetch response
+      // go to the url, use the right method, and attach the headers
+      let response = await fetch(url, {
+        method,
+        headers: {
+          'Accept': 'application/json'
+        },
+      });
+
+      // once we have our response, send it into handle response
+      handleResponse(response, method === 'get');
+    };
+
+    const init = () => {
+      // code from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+      }
+
+      // grab form
+      const recipeForm = document.querySelector('#recipeForm');
+
+      // function to handle our request
+      const getRecipe = (e) => {
+        e.preventDefault();
+        requestUpdate(recipeForm);
+        return false;
+      };
+
+      const addRecipe = (e) => {
+        e.preventDefault();
+        sendPost(recipeForm);
+        return false;
+      };
+
+
+      // add event listener
+      recipeForm.addEventListener('click', addRecipe);
+    };
+
+    window.onload = init;
+  </script>
 </head>
 
 <body>
-  <script>
-    // code from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-    }
-  </script>
-
   <div class="header">
     <h1>My Recipe Box</h1>
   </div>
+  <br>
+  <section id="top">
+    <h2 style="text-align: center;"> + New recipe card</h2>
+    <form id="recipeForm" action="/addRecipe" method="post">
+      <label for="name">Name: </label>
+      <input id="nameField" type="text" name="name" /> <br>
+      <label for="ingredients">Ingredients: </label>
+      <input id="ingredientsField" type="text" name="ingredients" placeholder="separate by commas" /> <br>
+      <label for="directions">Directions: </label>
+      <!-- <input id="directionsField" type="text" name="directions"/> <br> -->
+      <textarea name="directions" id="directionsField"></textarea> <br>
+      <label for="category">Category: </label>
+      <select name="categories" id="categories">
+        <option value="want">Want to make</option>
+        <option value="made">Have made</option>
+        <option value="favorites">Favorites</option>
+      </select>
+      <button id="addRecipe">Add To Box</button>
+    </form>
+  </section>
+
   <div class="categories">
-    <div id="" class="box">
+    <div id="" class="box" style="background-image: url(flowers-7910753_1280.png);">
       <h1>Want to Make</h1>
 
       <section class="cards">
         <div class="recipe">
           <button type="button" class="collapsible">
-            <h2>Name: </h2>
-            <p id="name">Totally Real Dish</p>
+            <!-- <h2 style="display: inline;">Name: </h2> -->
+            <!-- <p id="name" style="display: inline;">Totally Real Dish</p> -->
+            <h2>Totally Real Dish</h2>
           </button>
 
           <div class="content">
@@ -58,10 +189,10 @@
         </div>
       </section>
     </div>
-    <div id="" class="box">
+    <div id="" class="box" style="background-image: url('flowers-7910753_1280.png');">
       <h1>Have Made</h1>
     </div>
-    <div id="" class="box">
+    <div id="" class="box" style="background-image: url(flowers-7910753_1280.png);">
       <h1>Favorites</h1>
     </div>
   </div>
