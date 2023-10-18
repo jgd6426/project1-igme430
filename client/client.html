@@ -113,6 +113,7 @@
 
       // grab form
       const recipeForm = document.querySelector('#recipeForm');
+      const addBtn = document.querySelector('#addRecipe');
 
       // function to handle our request
       const getRecipe = (e) => {
@@ -128,8 +129,9 @@
       };
 
 
+      
       // add event listener
-      recipeForm.addEventListener('click', addRecipe);
+      addBtn.addEventListener('click', addRecipe);
     };
 
     window.onload = init;

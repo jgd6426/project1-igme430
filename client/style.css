@@ -59,7 +59,7 @@ h6 {
   justify-content: space-between;
 }
 .box {
-  background-color: rgb(246, 239, 227);
+  background-color: whitesmoke;
   margin: 5px;
   width: 100%;
   border: 1px solid rgb(233, 233, 233);
@@ -93,7 +93,7 @@ h6 {
   text-align: left;
   font-size: 16px;
 }
-/* .content {
+.content {
   display: none;
   overflow: hidden;
-} */
+}
